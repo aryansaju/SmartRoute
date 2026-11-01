@@ -1,0 +1,59 @@
+# One command demo:  docker compose -f deploy/docker-compose.yml up --build
+# Gateway: http://localhost:8080   Mock upstream: http://localhost:9000   Metrics: http://localhost:8080/metrics
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: smartroute
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-smartroute}
+      POSTGRES_DB: smartroute
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smartroute -d smartroute"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  embedder:
+    build:
+      context: ../sidecar/embedder
+    environment:
+      EMBED_BACKEND: ${EMBED_BACKEND:-sentence-transformers}   # set to "hash" for a lightweight, non semantic demo
+      EMBED_MODEL: ${EMBED_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
+
+  mockupstream:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+      target: mockupstream
+    command: ["-latency=500ms", "-words=40"]
+    ports:
+      - "9000:9000"
+
+  gateway:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+      target: gateway
+    environment:
+      LISTEN_ADDR: ":8080"
+      DATABASE_URL: postgres://smartroute:smartroute@postgres:5432/smartroute?sslmode=disable
+      EMBEDDER_URL: http://embedder:8001
+      UPSTREAM_BASE_URL: ${UPSTREAM_BASE_URL:-http://mockupstream:9000}
+      UPSTREAM_API_KEY: ${UPSTREAM_API_KEY:-}
+      GATEWAY_API_KEY: ${GATEWAY_API_KEY:-}
+      SEMANTIC_THRESHOLD: ${SEMANTIC_THRESHOLD:-0.92}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      embedder:
+        condition: service_started
+      mockupstream:
+        condition: service_started
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgdata:

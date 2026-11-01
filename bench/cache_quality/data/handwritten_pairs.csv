@@ -1,0 +1,61 @@
+question1,question2,label,category
+How do I reset my password?,How can I reset my password?,1,paraphrase
+What is the capital of France?,Which city is the capital of France?,1,paraphrase
+How do I install Python on Windows?,What is the way to install Python on Windows?,1,paraphrase
+What are the symptoms of the flu?,Which symptoms does the flu cause?,1,paraphrase
+How long does it take to boil an egg?,How many minutes does boiling an egg take?,1,paraphrase
+Can you explain what a neural network is?,Explain what a neural network is.,1,paraphrase
+What is the boiling point of water at sea level?,At sea level what is the boiling point of water?,1,paraphrase
+How do I convert a string to an integer in Java?,What is the way to turn a string into an integer in Java?,1,paraphrase
+Why is the sky blue?,What makes the sky look blue?,1,paraphrase
+How do I create a new branch in Git?,What command creates a new branch in Git?,1,paraphrase
+What is the difference between TCP and UDP?,How are TCP and UDP different?,1,paraphrase
+How can I lose weight safely?,What is a safe way to lose weight?,1,paraphrase
+Who wrote Pride and Prejudice?,Which author wrote Pride and Prejudice?,1,paraphrase
+What does API stand for?,What is the meaning of the acronym API?,1,paraphrase
+How do I center a div in CSS?,What is the way to center a div with CSS?,1,paraphrase
+How many ounces are in a pound?,What is the number of ounces in one pound?,1,paraphrase
+What is the best way to learn Spanish?,How should I go about learning Spanish?,1,paraphrase
+How do I undo the last commit in Git?,How can I revert my most recent Git commit?,1,paraphrase
+What is photosynthesis?,Can you tell me what photosynthesis is?,1,paraphrase
+How do I cancel my subscription?,What steps do I follow to cancel my subscription?,1,paraphrase
+What is the capital of France?,What is the capital of Germany?,0,entity_swap
+Who founded Apple?,Who founded Microsoft?,0,entity_swap
+How do I install Python on Windows?,How do I install Python on Linux?,0,entity_swap
+What is the population of Tokyo?,What is the population of Mumbai?,0,entity_swap
+Who wrote Hamlet?,Who wrote Macbeth?,0,entity_swap
+What is the weather in Paris?,What is the weather in London?,0,entity_swap
+Translate hello into Spanish,Translate hello into French,0,entity_swap
+How tall is Mount Everest?,How tall is Mount Kilimanjaro?,0,entity_swap
+What is the CEO of Google called?,What is the CEO of Amazon called?,0,entity_swap
+Convert 100 dollars to euros,Convert 200 dollars to euros,0,number_swap
+How many days are in 3 weeks?,How many days are in 5 weeks?,0,number_swap
+What is 15 percent of 200?,What is 25 percent of 200?,0,number_swap
+Show me the top 5 movies of 2020,Show me the top 10 movies of 2020,0,number_swap
+How do I bake a cake at 350 degrees?,How do I bake a cake at 450 degrees?,0,number_swap
+What happened in 1914?,What happened in 1939?,0,number_swap
+How do I enable dark mode?,How do I disable dark mode?,0,antonym
+How do I add a user to the group?,How do I remove a user from the group?,0,antonym
+How do I turn on notifications?,How do I turn off notifications?,0,antonym
+Should I increase my insurance coverage?,Should I decrease my insurance coverage?,0,antonym
+How do I start the service?,How do I stop the service?,0,antonym
+How do I lock my phone remotely?,How do I unlock my phone remotely?,0,antonym
+How do I allow cookies in the browser?,How do I block cookies in the browser?,0,antonym
+How do I enable two factor authentication?,How do I not enable two factor authentication?,0,negation
+Is it safe to eat raw eggs?,Is it not safe to eat raw eggs?,0,negation
+Can I use this medicine with alcohol?,Can't I use this medicine with alcohol?,0,negation
+Does this plan include free shipping?,Does this plan exclude free shipping?,0,antonym
+Why do I need a visa?,Why do I never need a visa?,0,negation
+How do I learn python,How do I learn java,0,guard_blind
+how to make tea,how to make coffee,0,guard_blind
+what is the capital of italy,what is the capital of spain,0,guard_blind
+how do i cancel my subscription,how do i renew my subscription,0,guard_blind
+how do i rent a car,how do i service a car,0,guard_blind
+what does a dolphin eat,what does a shark eat,0,guard_blind
+how to learn guitar quickly,how to learn piano quickly,0,guard_blind
+how do i sell my house,how do i paint my house,0,guard_blind
+Explain how a refrigerator works,Explain how a microwave works,0,guard_blind
+How do I get a refund?,How do I get a receipt?,0,guard_blind
+What is a good gift for my mother?,What is a good gift for my teacher?,0,guard_blind
+How do I write a for loop in Python?,How do I write a while loop in Python?,0,guard_blind
+What is the time complexity of quicksort?,What is the time complexity of mergesort?,0,guard_blind

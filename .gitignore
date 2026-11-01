@@ -1,0 +1,23 @@
+# build output
+bin/
+*.exe
+# environment and secrets
+.env
+*.pem
+*.key
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+# editors and OS
+.idea/
+.vscode/
+.DS_Store
+# benchmark output (commit curated results deliberately with `git add -f`)
+bench/results/*
+!bench/results/.gitkeep
+bench/cache_quality/data/qqp_pairs.csv
+bench/cache_quality/data/paws_pairs.csv
+# model caches
+.cache/
