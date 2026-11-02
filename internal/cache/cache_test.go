@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/<your-user>/smartroute-core/internal/chat"
+	"github.com/aryansaju/smartroute-core/internal/chat"
 )
 
 type stubEmbedder struct {

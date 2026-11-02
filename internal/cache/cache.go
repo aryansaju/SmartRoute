@@ -6,8 +6,8 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/<your-user>/smartroute-core/internal/chat"
-	"github.com/<your-user>/smartroute-core/internal/embed"
+	"github.com/aryansaju/smartroute-core/internal/chat"
+	"github.com/aryansaju/smartroute-core/internal/embed"
 )
 
 // Kind says which layer produced a hit.
@@ -66,6 +66,10 @@ type Cache struct {
 	log   *slog.Logger
 }
 
+func l1Key(key Key) string {
+	return key.Namespace + ":" + key.Exact
+}
+
 // New builds a Cache. l1Size below 1 disables the in process layer.
 func New(cfg Config, l1Size int, store Store, emb embed.Embedder, log *slog.Logger) *Cache {
 	if log == nil {
@@ -83,7 +87,7 @@ func (c *Cache) Lookup(ctx context.Context, key Key, prompt string, semanticOK b
 	res := &Result{Stages: Stages{}}
 
 	t := time.Now()
-	if comp, ok := c.l1.Get(key.Exact); ok {
+	if comp, ok := c.l1.Get(l1Key(key)); ok {
 		res.Stages.Add("l1", time.Since(t))
 		res.Hit = &Hit{Kind: KindL1, Completion: comp, Similarity: 1}
 		return res
@@ -97,7 +101,7 @@ func (c *Cache) Lookup(ctx context.Context, key Key, prompt string, semanticOK b
 		c.log.Warn("exact lookup failed", "err", err)
 		res.StoreErr = err
 	} else if e != nil {
-		c.l1.Add(key.Exact, e.Completion, time.Until(e.ExpiresAt))
+		c.l1.Add(l1Key(key), e.Completion, time.Until(e.ExpiresAt))
 		res.Hit = &Hit{Kind: KindExact, Completion: e.Completion, Similarity: 1, MatchedPrompt: e.PromptText}
 		return res
 	}
@@ -142,7 +146,7 @@ func (c *Cache) Lookup(ctx context.Context, key Key, prompt string, semanticOK b
 				continue
 			}
 		}
-		c.l1.Add(key.Exact, m.Entry.Completion, time.Until(m.Entry.ExpiresAt))
+		c.l1.Add(l1Key(key), m.Entry.Completion, time.Until(m.Entry.ExpiresAt))
 		res.Hit = &Hit{Kind: KindSemantic, Completion: m.Entry.Completion, Similarity: m.Similarity, MatchedPrompt: m.Entry.PromptText}
 		return res
 	}
@@ -152,7 +156,7 @@ func (c *Cache) Lookup(ctx context.Context, key Key, prompt string, semanticOK b
 // Put stores an answer. prompt and emb may be empty for entries that should only be reachable by exact match.
 func (c *Cache) Put(ctx context.Context, key Key, prompt string, emb []float32, comp chat.Completion) error {
 	now := time.Now()
-	c.l1.Add(key.Exact, comp, c.cfg.TTL)
+	c.l1.Add(l1Key(key), comp, c.cfg.TTL)
 	return c.store.Put(ctx, &Entry{
 		Namespace: key.Namespace, ExactKey: key.Exact, PromptText: prompt, Embedding: emb,
 		Completion: comp, CreatedAt: now, ExpiresAt: now.Add(c.cfg.TTL),
@@ -167,4 +171,6 @@ func (c *Cache) L1Len() int { return c.l1.Len() }
 
 // PutL1 stores an answer in the in process layer only. It is cheap enough to call on the request path,
 // so an immediate repeat of a request hits even before the asynchronous store write finishes.
-func (c *Cache) PutL1(key Key, comp chat.Completion) { c.l1.Add(key.Exact, comp, c.cfg.TTL) }
+func (c *Cache) PutL1(key Key, comp chat.Completion) {
+	c.l1.Add(l1Key(key), comp, c.cfg.TTL)
+}

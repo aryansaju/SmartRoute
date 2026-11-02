@@ -12,7 +12,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/<your-user>/smartroute-core/internal/mockllm"
+	"github.com/aryansaju/smartroute-core/internal/mockllm"
 )
 
 func main() {

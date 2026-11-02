@@ -13,13 +13,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/<your-user>/smartroute-core/internal/cache"
-	"github.com/<your-user>/smartroute-core/internal/chat"
-	"github.com/<your-user>/smartroute-core/internal/config"
-	"github.com/<your-user>/smartroute-core/internal/embed"
-	"github.com/<your-user>/smartroute-core/internal/mockllm"
-	"github.com/<your-user>/smartroute-core/internal/provider"
-	"github.com/<your-user>/smartroute-core/internal/telemetry"
+	"github.com/aryansaju/smartroute-core/internal/cache"
+	"github.com/aryansaju/smartroute-core/internal/chat"
+	"github.com/aryansaju/smartroute-core/internal/config"
+	"github.com/aryansaju/smartroute-core/internal/embed"
+	"github.com/aryansaju/smartroute-core/internal/mockllm"
+	"github.com/aryansaju/smartroute-core/internal/provider"
+	"github.com/aryansaju/smartroute-core/internal/telemetry"
 )
 
 // stubEmbedder returns registered vectors and falls back to the hash embedder for anything else.

@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"runtime/debug"
 
-	"github.com/<your-user>/smartroute-core/internal/telemetry"
+	"github.com/aryansaju/smartroute-core/internal/telemetry"
 )
 
 type ctxKey int

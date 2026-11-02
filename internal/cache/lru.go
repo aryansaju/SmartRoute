@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/<your-user>/smartroute-core/internal/chat"
+	"github.com/aryansaju/smartroute-core/internal/chat"
 )
 
 type lruItem struct {

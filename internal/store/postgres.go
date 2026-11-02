@@ -15,9 +15,9 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/<your-user>/smartroute-core/internal/async"
-	"github.com/<your-user>/smartroute-core/internal/cache"
-	"github.com/<your-user>/smartroute-core/internal/telemetry"
+	"github.com/aryansaju/smartroute-core/internal/async"
+	"github.com/aryansaju/smartroute-core/internal/cache"
+	"github.com/aryansaju/smartroute-core/internal/telemetry"
 )
 
 //go:embed schema.sql

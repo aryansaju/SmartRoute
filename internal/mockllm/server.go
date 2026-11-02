@@ -15,7 +15,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/<your-user>/smartroute-core/internal/chat"
+	"github.com/aryansaju/smartroute-core/internal/chat"
 )
 
 // Config controls the mock's behaviour.

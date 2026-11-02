@@ -8,12 +8,12 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/<your-user>/smartroute-core/internal/async"
-	"github.com/<your-user>/smartroute-core/internal/cache"
-	"github.com/<your-user>/smartroute-core/internal/config"
-	"github.com/<your-user>/smartroute-core/internal/flight"
-	"github.com/<your-user>/smartroute-core/internal/provider"
-	"github.com/<your-user>/smartroute-core/internal/telemetry"
+	"github.com/aryansaju/smartroute-core/internal/async"
+	"github.com/aryansaju/smartroute-core/internal/cache"
+	"github.com/aryansaju/smartroute-core/internal/config"
+	"github.com/aryansaju/smartroute-core/internal/flight"
+	"github.com/aryansaju/smartroute-core/internal/provider"
+	"github.com/aryansaju/smartroute-core/internal/telemetry"
 )
 
 // Deps are the collaborators a Server needs.

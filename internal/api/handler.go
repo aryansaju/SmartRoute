@@ -15,9 +15,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/<your-user>/smartroute-core/internal/cache"
-	"github.com/<your-user>/smartroute-core/internal/chat"
-	"github.com/<your-user>/smartroute-core/internal/telemetry"
+	"github.com/aryansaju/smartroute-core/internal/cache"
+	"github.com/aryansaju/smartroute-core/internal/chat"
+	"github.com/aryansaju/smartroute-core/internal/telemetry"
 )
 
 var (
